@@ -11,5 +11,5 @@ interface GetImageService
     /**
      * Get image
      */
-    public function execute(string $imageId): ?Image;
+    public function execute(int $imageId): ?Image;
 }
