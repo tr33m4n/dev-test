@@ -39,7 +39,7 @@
         </thead>
         <tbody>
         @foreach ($breeds as $breed)
-            <tr>
+            <tr data-row-name="{{ $breed->name }}" style="display: none">
                 <th scope="row">{{ $breed->id }}</th>
                 <td>{{ $breed->name }}</td>
             </tr>
@@ -50,8 +50,25 @@
 
 @push('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('searchInput').focus();
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const breedsTableRows = [...document.querySelectorAll('#breeds-table tbody tr')];
+
+            searchInput.focus();
+
+            /**
+             * Decided to use straightforward JS to handle the filter logic. Didn't see the need to use anything more
+             * advanced (Vue.js, Alpine.js etc)
+             */
+            searchInput.addEventListener('keyup', (event) => {
+                const value = event.target.value.toLowerCase();
+
+                breedsTableRows.forEach((row) => {
+                    row.style.display = row.dataset.rowName.toLowerCase().indexOf(value) > -1
+                        ? 'table-row'
+                        : 'none';
+                })
+            });
 
             const titles = [
                 "Looking for a Dog Breed?",
