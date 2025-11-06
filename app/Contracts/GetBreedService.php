@@ -11,5 +11,5 @@ interface GetBreedService
     /**
      * Get breed
      */
-    public function execute(string $breedId): ?Breed;
+    public function execute(int $breedId): ?Breed;
 }
