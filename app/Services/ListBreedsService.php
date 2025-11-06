@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Contracts\Api\Breed;
 use App\Contracts\Api\Client;
-use App\Contracts\GetBreedService as GetBreedServiceContract;
+use App\Contracts\ListBreedsService as ListBreedsServiceContract;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-readonly class GetBreedService implements GetBreedServiceContract
+readonly class ListBreedsService implements ListBreedsServiceContract
 {
     /**
-     * GetBreedService constructor.
+     * ListBreedsService constructor.
      */
     public function __construct(
         private Client $client
@@ -24,22 +24,22 @@ readonly class GetBreedService implements GetBreedServiceContract
     /**
      * @inheritDoc
      */
-    public function execute(int $breedId): ?Breed
+    public function execute(): Collection
     {
         try {
-            return $this->client->breeds()->get($breedId);
+            return $this->client->breeds()->list();
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
 
-            return null;
+            return collect();
         }
     }
 
     /**
-     * Register get breed API service
+     * Register list breed API service
      */
     public static function register(Application $application): void
     {
-        $application->bind(GetBreedServiceContract::class, GetBreedService::class);
+        $application->bind(ListBreedsServiceContract::class, ListBreedsService::class);
     }
 }
