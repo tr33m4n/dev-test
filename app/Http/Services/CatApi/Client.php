@@ -6,6 +6,7 @@ namespace App\Http\Services\CatApi;
 
 use App\Contracts\Api\Client as ClientContract;
 use App\Http\Method;
+use App\Http\Services\CatApi\Resources\Images as ImagesResource;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
@@ -19,6 +20,14 @@ readonly class Client implements ClientContract
     public function __construct(
         private PendingRequest $request
     ) {
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function images(): ImagesResource
+    {
+        return new ImagesResource($this);
     }
 
     /**
