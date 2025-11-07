@@ -33,15 +33,4 @@ class Image implements ImageContract
             $image[self::URL_KEY]
         );
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function toArray(): array
-    {
-        return [
-            self::ID_KEY => $this->id,
-            self::URL_KEY => $this->url
-        ];
-    }
 }

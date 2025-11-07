@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Contracts\Api;
 
-use Illuminate\Contracts\Support\Arrayable;
-
 /**
  * @property-read string $id
  * @property-read string $name
@@ -14,8 +12,9 @@ use Illuminate\Contracts\Support\Arrayable;
  * @property-read string | null $origin
  * @property-read string | null $description
  * @property-read string | null $wikipediaUrl
+ * @property-read string | null $lifeSpan
  */
-interface Breed extends Arrayable
+interface Breed
 {
-
+    //
 }

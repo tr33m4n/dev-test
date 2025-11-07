@@ -22,6 +22,8 @@ class Breed implements BreedContract
 
     public const WIKIPEDIA_URL_KEY = 'wikipedia_url';
 
+    public const LIFE_SPAN_KEY = 'life_span';
+
     /**
      * Breed constructor.
      */
@@ -32,7 +34,8 @@ class Breed implements BreedContract
         public readonly ?string $temperament = null,
         public readonly ?string $origin = null,
         public readonly ?string $description = null,
-        public readonly ?string $wikipediaUrl = null
+        public readonly ?string $wikipediaUrl = null,
+        public readonly ?string $lifeSpan = null,
     ) {
     }
 
@@ -50,24 +53,8 @@ class Breed implements BreedContract
             $breed[self::TEMPERAMENT_KEY] ?? null,
             $breed[self::ORIGIN_KEY] ?? null,
             $breed[self::DESCRIPTION_KEY] ?? null,
-            $breed[self::WIKIPEDIA_URL_KEY] ?? null
+            $breed[self::WIKIPEDIA_URL_KEY] ?? null,
+            $breed[self::LIFE_SPAN_KEY] ?? null,
         );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function toArray(): array
-    {
-        return [
-            self::ID_KEY => $this->id,
-            self::NAME_KEY => $this->name,
-            self::IMAGE_ID_KEY => $this->imageId,
-            self::WEIGHT_KEY => $this->weight,
-            self::HEIGHT_KEY => $this->height,
-            self::LIFE_SPAN_KEY => $this->lifeSpan,
-            self::BRED_FOR_KEY => $this->bredFor,
-            self::BREED_GROUP_KEY => $this->breedGroup
-        ];
     }
 }
